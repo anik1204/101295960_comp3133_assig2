@@ -9,10 +9,4 @@ import { Component } from "@angular/core";
 
 export class AppComponent {
     title = "Employee Management System";
-    password: string = "";
-    email: string = "";
-
-    handleLogin() {
-        console.log("Email: " + this.email + " Password: " + this.password);
-    }
 }

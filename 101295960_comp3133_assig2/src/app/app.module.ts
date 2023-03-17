@@ -10,15 +10,20 @@ import { SignupComponent } from './signup/signup.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { AddEmployeeComponent } from './employee/add-employee/add-employee.component';
+import { EditEmployeeComponent } from './employee/edit-employee/edit-employee.component';
 
 
 
 @NgModule({
-    declarations: [AppComponent, EmployeesComponent, LoginComponent, SignupComponent, PageNotFoundComponent, EmployeeComponent],
+    declarations: [AppComponent, EmployeesComponent, LoginComponent, SignupComponent, PageNotFoundComponent, EmployeeComponent, AddEmployeeComponent, EditEmployeeComponent],
     imports: [BrowserModule, NgbModule, FormsModule,RouterModule.forRoot([
         {path: 'login', component: LoginComponent},
         {path: 'signup', component: SignupComponent},
-        {path: 'employees', component: EmployeesComponent},
+        { path: 'employees', component: EmployeesComponent },
+      { path: 'employee', component: EmployeeComponent },
+      { path: 'employee/edit', component: EditEmployeeComponent },
+      { path: 'employee/add', component: AddEmployeeComponent },
         {path: '', redirectTo: '/login', pathMatch: 'full'},
         {path: '**', component: PageNotFoundComponent}
       ]), FontAwesomeModule, ],

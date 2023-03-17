@@ -1,1 +1,39 @@
-<p>employee works!</p>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+        <h2 class="text-center" >View Employee</h2>
+        <table class="table table-bordered">
+            <tbody class="table-borderless text-center">
+            <tr>
+                <th>First Name</th>
+                <td>{{ employee.first_name }}</td>
+            </tr>
+            <tr>
+                <th>Last Name</th>
+                <td>{{ employee.last_name }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ employee.email }}</td>
+            </tr>
+            <tr>
+                <th>Gender</th>
+                <td>{{ employee.gender }}</td>
+            </tr>
+            <tr>
+                <th>Salary</th>
+                <td>{{ employee.salary | currency }}</td>
+            </tr>
+            <tr class="table-borderless">
+                <td>
+                    <button type="button" class="btn btn-primary">Edit</button>
+                </td>
+                <td>
+                    <button type="button" routerLink="/employees" class="btn btn-danger">Cancel</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        </div>
+    </div>
+</div>

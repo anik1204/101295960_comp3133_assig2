@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-employees',
@@ -14,8 +15,17 @@ export class EmployeesComponent {
       id: 1,
     }
     ];
-
+    constructor(private router: Router) {}
     handleDelete(employeeId: number) {
         console.log(employeeId)
-    }
+  }
+  
+  handleEdit(employee: any) {
+    console.log(employee);
+    this.router.navigate(['/employee/edit'], {state: {data: employee}});
+  }
+  handleView(employee: any) {
+    console.log(employee);
+    this.router.navigate(['/employee'], {state: {data: employee}});
+  }
 }

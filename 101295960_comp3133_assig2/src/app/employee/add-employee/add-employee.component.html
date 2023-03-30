@@ -25,15 +25,17 @@
                                 <label class="form-label" for="typeEmailX">Email</label>
                             </div>
                             <div class="form-outline form-black mb-4">
-                                <input type="email" id="typeEmailX" [(ngModel)]="gender" class="form-control form-control-lg" required />
+                                <input type="text" id="typeEmailX" [(ngModel)]="gender" class="form-control form-control-lg" required />
                                 <label class="form-label" for="typeEmailX">Gender</label>
                             </div>
                             <div class="form-outline form-black mb-4">
-                                <input type="email" id="typeEmailX" [(ngModel)]="salary" class="form-control form-control-lg" required />
+                                <input type="number" id="typeEmailX" [(ngModel)]="salary" class="form-control form-control-lg" required />
                                 <label class="form-label" for="typeEmailX">Salary</label>
                             </div>
                             <button class="btn btn-outline-dark btn-lg px-5" type="submit">Add Employee</button>
-
+                            <br>
+                            <br>
+                            <button class="btn btn-outline-danger btn-lg px-5" routerLink="/employees" type="submit">Cancel</button>
                         </div>
 
                     </div>

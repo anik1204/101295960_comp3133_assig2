@@ -12,12 +12,16 @@ import { EmployeeComponent } from './employee/employee.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AddEmployeeComponent } from './employee/add-employee/add-employee.component';
 import { EditEmployeeComponent } from './employee/edit-employee/edit-employee.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ApolloModule, APOLLO_OPTIONS } from 'apollo-angular';
+import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
+import { InMemoryCache } from 'apollo-cache-inmemory';
 
 
 
 @NgModule({
     declarations: [AppComponent, EmployeesComponent, LoginComponent, SignupComponent, PageNotFoundComponent, EmployeeComponent, AddEmployeeComponent, EditEmployeeComponent],
-    imports: [BrowserModule, NgbModule, FormsModule,RouterModule.forRoot([
+    imports: [BrowserModule,ApolloModule, HttpLinkModule, HttpClientModule,NgbModule, FormsModule,RouterModule.forRoot([
         {path: 'login', component: LoginComponent},
         {path: 'signup', component: SignupComponent},
         { path: 'employees', component: EmployeesComponent },
@@ -27,6 +31,18 @@ import { EditEmployeeComponent } from './employee/edit-employee/edit-employee.co
         {path: '', redirectTo: '/login', pathMatch: 'full'},
         {path: '**', component: PageNotFoundComponent}
       ]), FontAwesomeModule, ],
+      providers: [
+        {
+          provide: APOLLO_OPTIONS,
+          useFactory: (httpLink: HttpLink) => {
+            return {
+              cache: new InMemoryCache(),
+              link: httpLink.create({ uri: 'http://localhost:5000/graphql' }),
+            };
+          },
+          deps: [HttpLink],
+        },
+      ],
     bootstrap: [AppComponent],
 })
 

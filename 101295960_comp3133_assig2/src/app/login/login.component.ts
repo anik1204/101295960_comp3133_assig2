@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
+import { LoginResponse } from '../types';
 import { LoginService } from './login.service';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -10,20 +13,24 @@ export class LoginComponent {
   password: string = '';
   email: string = '';
 
-  constructor(private loginService: LoginService) {} // Inject the GraphqlService
+  constructor(private loginService: LoginService, private router: Router) { }
 
   handleLogin() {
+    
     console.log('Email: ' + this.email + ' Password: ' + this.password);
     this.loginService.loginUser(this.email, this.password).subscribe(
-      (result) => {
-        if (result.data.loginUser.success) {
+      (result: any) => {
+        const loginResponse: LoginResponse = result.data.loginUser;
+        if (loginResponse.success) {
           console.log('Login successful');
-          console.log('User:', result.data.loginUser.user);
-          console.log('Token:', result.data.loginUser.token);
-          // Save the token to local storage and navigate to the next page
+          console.log('User:', loginResponse.user);
+          // Save the user data to local storage and navigate to the next page
+          // Navigate to /employees
+          this.router.navigate(['/employees']);
         } else {
-          console.log('Login failed:', result.data.loginUser.message);
+          console.log('Login failed:', loginResponse.message);
         }
+        console.log('Result:', result)
       },
       (error) => {
         console.error('Error:', error);

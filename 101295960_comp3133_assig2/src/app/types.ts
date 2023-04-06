@@ -9,3 +9,10 @@ export interface User {
     message?: string;
     user?: User;
   }
+
+  export interface RegisterResponse {
+    success: boolean;
+    status: number;
+    message?: string;
+    user?: User;
+  }

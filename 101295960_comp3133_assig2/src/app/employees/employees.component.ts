@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { ApiService } from '../api.service';
 @Component({
   selector: 'app-employees',
   templateUrl: './employees.component.html',
@@ -15,7 +15,7 @@ export class EmployeesComponent {
       id: 1,
     }
     ];
-    constructor(private router: Router) {}
+    constructor(private router: Router, private api: ApiService) {}
     handleDelete(employeeId: number) {
         console.log(employeeId)
   }
@@ -27,5 +27,17 @@ export class EmployeesComponent {
   handleView(employee: any) {
     console.log(employee);
     this.router.navigate(['/employee'], {state: {data: employee}});
+  }
+
+  ngOnInit(): void {
+    this.api.getEmployees().subscribe(
+      (result: any) => {
+        this.employees = result.data.employees;
+        console.log(this.employees);
+      },
+      (error) => {
+        console.error('Error:', error);
+      },
+    );
   }
 }

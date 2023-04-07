@@ -95,4 +95,44 @@ export class ApiService {
       }
     })
   }
+
+  deleteEmployee(id: string) {
+    const DELETE_EMPLOYEE_MUTATION = gql`
+  mutation DeleteEmployee($id: ID!) {
+    deleteEmployee(id: $id) {
+      success
+      message
+    }
+  }`;
+
+    return this.apollo.mutate({
+      mutation: DELETE_EMPLOYEE_MUTATION,
+      variables: {
+        id
+      }
+    })
+  }
+
+  createEmployee(first_name: string, last_name: string, email: string, gender: string, salary: number){
+    const CREATE_EMPLOYEE_MUTATION = gql`
+    mutation CreateEmployee($employeeInput: EmployeeInput) {
+      createEmployee(employeeInput: $employeeInput) {
+        success
+        message
+      }
+    }`;
+
+    return this.apollo.mutate({
+      mutation: CREATE_EMPLOYEE_MUTATION,
+      variables: {
+        employeeInput: {
+          first_name,
+          last_name,
+          email,
+          gender,
+          salary
+        }
+      }
+    })
+  }
 }

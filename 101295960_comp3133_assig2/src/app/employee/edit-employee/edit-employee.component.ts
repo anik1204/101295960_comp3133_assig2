@@ -26,9 +26,11 @@ export class EditEmployeeComponent {
       (result: any) => {
         const response: any = result.data.editEmployee;
         if (response.success) {
-          // Save the user data to local storage and navigate to the next page
+          
           // Navigate to /employees
-          this.router.navigate(['/employees']);
+          this.router.navigateByUrl('/employees', { skipLocationChange: false }).then(() => {
+            window.location.reload();
+          });
         } else {
           console.log('Edit failed:', response.message);
         }

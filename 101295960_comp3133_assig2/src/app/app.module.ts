@@ -54,7 +54,7 @@ import { AuthComponent } from './auth/auth.component';
       useFactory: (httpLink: HttpLink) => {
         return {
           cache: new InMemoryCache(),
-          link: httpLink.create({ uri: 'http://localhost:5000/' }),
+          link: httpLink.create({ uri: 'https://101295960-comp-3133-assignment1.vercel.app/' }),
         };
       },
       deps: [HttpLink],

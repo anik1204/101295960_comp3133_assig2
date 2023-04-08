@@ -12,6 +12,7 @@ export class LoginComponent {
   title = 'Login';
   password: string = '';
   email: string = '';
+  errorMessage: any = '';
 
   constructor(private loginService: LoginService, private router: Router) { }
 
@@ -24,10 +25,13 @@ export class LoginComponent {
         if (loginResponse.success) {
           console.log('Login successful');
           console.log('User:', loginResponse.user);
+      
           // Save the user data to local storage and navigate to the next page
           // Navigate to /employees
+          localStorage.setItem('user', this.email);
           this.router.navigate(['/employees']);
         } else {
+          this.errorMessage = loginResponse.message;
           console.log('Login failed:', loginResponse.message);
         }
         console.log('Result:', result)

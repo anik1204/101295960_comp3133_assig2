@@ -16,6 +16,7 @@ import { ApolloModule, APOLLO_OPTIONS } from 'apollo-angular';
 import { HttpLink } from 'apollo-angular/http';
 import { InMemoryCache } from '@apollo/client/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { AuthComponent } from './auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     EmployeeComponent,
     AddEmployeeComponent,
     EditEmployeeComponent,
+    AuthComponent,
   ],
   imports: [
     BrowserModule,

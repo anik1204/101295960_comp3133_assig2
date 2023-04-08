@@ -13,6 +13,8 @@ export class SignupComponent {
   username: string = "";
   password: string = "";
   email: string = "";
+  errorMessage: any = '';
+
 
   constructor(private api: ApiService, private router: Router) { }
 
@@ -23,9 +25,11 @@ export class SignupComponent {
         const registerResponse: RegisterResponse = result.data.register;
         if (registerResponse.success) {
           // Save the user data to local storage and navigate to the next page
+          localStorage.setItem('user', this.email);
           // Navigate to /employees
           this.router.navigate(['/employees']);
         } else {
+          this.errorMessage = registerResponse.message;
           console.log('Login failed:', registerResponse.message);
         }
         
